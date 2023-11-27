@@ -31,11 +31,11 @@ Outside of the site:
   | TXT | TXT Records |
   | ----------- | ----------- |
 
-  `
+  ```
   nslookup -type=A domain.com
   whois domain.com
   dig domain.com TYPE
-  `
+  ```
   -[Shodan.io](https://www.shodan.io/)
   
   Content discovery:
@@ -47,11 +47,11 @@ Outside of the site:
       -Wayback machine
       -S3 bucket
       -ffuf, dirb, gobuster
-      `
+      ```
       ffuf -w SecLists/Discovery/Web-Content/common.txt -u https://domain.com
       dirb https://domain.com SecLists/Discovery/Web-Content/common.txt
       gobuster dir --url http:s://domain.com -wSecLists/Discovery/Web-Content/common.txt
-      `
+      ```
       Seclists GitHub [page](https://github.com/danielmiessler/SecLists)
       
       
