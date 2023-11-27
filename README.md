@@ -19,8 +19,8 @@ The next step is to understand how the target application will respond to variou
 ## Web penetration testing tools:
   ### Reconnaisance:
 Outside of the site:
-  -Dns dumpster [web site](https://dnsdumpster.com/)
-  -Whois records, DNS records, with nslookup get ip of domain name
+  -Dns dumpster [web site](https://dnsdumpster.com/), also finds subdomains
+  -Whois records, DNS records, with nslookup get ip of domain name, dig
   | nslookup Query type | Description |
   | ----------- | ----------- |
   | A | IPv4 Address |
@@ -29,13 +29,31 @@ Outside of the site:
   | MX | Mail Servers |
   | SOA | Start of Authority |
   | TXT | TXT Records |
-  ``
+  | ----------- | ----------- |
+
+  `
   nslookup -type=A domain.com
   whois domain.com
-  ```
-    Content discovery:
+  dig domain.com TYPE
+  `
+  -[Shodan.io](https://www.shodan.io/)
+  
+  Content discovery:
       -Robots.txt 
       -Favicon.ico [Favicon database](https://wiki.owasp.org/index.php/OWASP_favicon_database)
+      -Sitemap.xml
+      -HTTP headers
+      -Wappalyzer [link](https://www.wappalyzer.com)
+      -Wayback machine
+      -S3 bucket
+      -ffuf, dirb, gobuster
+      `
+      ffuf -w SecLists/Discovery/Web-Content/common.txt -u https://domain.com
+      dirb https://domain.com SecLists/Discovery/Web-Content/common.txt
+      gobuster dir --url http:s://domain.com -wSecLists/Discovery/Web-Content/common.txt
+      `
+      Seclists GitHub [page](https://github.com/danielmiessler/SecLists)
+      
       
       
  
