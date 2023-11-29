@@ -80,3 +80,14 @@ ffuf -w valid_usernames.txt:W1,SecLists/Passwords/Common-Credentials/10-million-
 Hash breaking with hashcat and [cracking station](https://crackstation.net/)
  
 
+## Systems penetration testing
+
+### nmap commands
+```
+nmap -sV -sC -p- 10.20.30.40
+```
+-sV for version detection in ports
+-sC scripts
+-sS fast SYN scan
+-A OS detect, version detect, script scan, traceroute
+-p- for ports e.g -p-1-1000 
