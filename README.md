@@ -91,3 +91,9 @@ nmap -sV -sC -p- 10.20.30.40
 -sS fast SYN scan
 -A OS detect, version detect, script scan, traceroute
 -p- for ports e.g -p-1-1000 
+
+### Shells
+```
+nc -lvnp <port-number>
+```
+Listen a port in the attacking computer
