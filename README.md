@@ -93,7 +93,21 @@ nmap -sV -sC -p- 10.20.30.40
 -p- for ports e.g -p-1-1000 
 
 ### Shells
+Reverse shell in netcat
 ```
 nc -lvnp <port-number>
 ```
-Listen a port in the attacking computer
+in socat
+```
+socat TCP-L:<port> -
+```
+
+Bind shell in netcat
+```
+nc <target-ip> <chosen-port>
+```
+
+in socat
+```
+socat TCP:<TARGET-IP>:<TARGET-PORT> -
+```
